@@ -1,0 +1,14 @@
+# useful cURl commands
+-  `-s`: silent unneeded cURL output
+- `-h`: other options
+- `-k`: skip cert check
+- view full HTTP request + response: `-v` (verbose) - print both req and response
+	- extra verbose: `-vvv`
+- send a `HEAD` request: `-I`
+- display both headers + response body: `-i`
+- provide credentials using cURL: `-u`
+- `-X POST` flag: send POST request
+- `-d`: add POST data
+- `-L`: follow redirections of cURL
+- `-b`: set cookie
+- `-H`: set header-X
