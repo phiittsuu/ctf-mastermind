@@ -1,4 +1,5 @@
--  `-s`: silent unneeded cURL output
+# useful commands
+- `-s`: silent unneeded cURL output
 - `-h`: other options
 - `-k`: skip cert check
 - view full HTTP request + response: `-v` (verbose) - print both req and response
