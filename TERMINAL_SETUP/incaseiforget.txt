@@ -1,5 +1,0 @@
-WARNING: THE SCRIPTS ARE NOT YET WORKING (oops)
-bash script to install useful applictaions/packages
-there are two versions, one is mac specific (qinstall_mac)
-use 'chmod +x <name>' before running
-NOTE: REBOOT AFTER RUNNING
