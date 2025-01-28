@@ -9,6 +9,12 @@ brew install git
 brew install pipx
 brew install wget
 
+### installing openssl + npm ###
+brew install openssl
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+brew install npm
+
 ### main installation ###
 #-- GUI --#
 brew install iterm2 # optional, but imo better than default
@@ -56,12 +62,12 @@ wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O /tmp/ma
 
 ### other tools ###
 #-- jwt cracker --#
-mkdir -p jwt/jwt-cracker
-wget https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/Makefile -O jwt/jwt-cracker/Makefile
-wget https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/base64.c -O jwt/jwt-cracker/base64.c
-wget https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/base64.h -O jwt/jwt-cracker/base64.h
-wget https://raw.githubusercontent.com/brendan-rius/c-jwt-cracker/master/main.c -O jwt/jwt-cracker/main.c
-cd jwt/jwt-cracker && make OPENSSL=/usr/local/opt/openssl/include OPENSSL_LIB=-L/usr/local/opt/openssl/lib && cd ../../
+# install node.js #
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+
+# install jwt cracker #
+npm install --global jwt-cracker
 
 #-- hash identifier ---#
 wget https://raw.githubusercontent.com/blackploit/hash-identifier/master/hash-id.py -O misc/hash-id.py
