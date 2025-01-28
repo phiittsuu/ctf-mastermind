@@ -2,12 +2,26 @@
 # note: used for ubuntu, debian and derivatives
 # may need to change apt to apt-get - uncomment version you need
 
+# --- !!! --- #
+## WARNING: not fully tested, use at own risk ##
+# --- !!! --- #
+
 ###--- apt ---###
 # (apt apt uh uh-huh uh-huh)
 ### install git + pipx + wget ###
 apt install git
 apt install pipx
 apt install wget
+
+### chocolatey ###
+# Windows 10 #
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+### installing openssl + npm ###
+choco install openssl
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+brew install npm
 
 ### main installation ###
 #-- GUI --#
@@ -74,6 +88,28 @@ chmod +x misc/hash-id.py
 apt-get install git
 apt-get install pipx
 apt-get install wget
+
+### installing openssl + npm ###
+sudo apt-get update && sudo apt-get upgrade
+sudo apt install build-essential checkinstall zlib1g-dev -y
+cd /usr/local/src/
+wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz
+tar -xf openssl-1.1.1k.tar.gz
+cd openssl-1.1.1k.tar.gz
+./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib
+make
+make test
+make install
+cd /etc/ld.so.conf.d/
+nano openssl-1.1.1k.conf
+/usr/local/ssl/lib
+sudo ldconfig -v
+mv /usr/bin/c_rehash /usr/bin/c_rehash.BEKUP
+mv /usr/bin/openssl /usr/bin/openssl.BEKUP
+nano /etc/environment
+:/usr/local/ssl/bin
+source /etc/environment
+echo $PATH
 
 ### main installation ###
 #-- GUI --#
